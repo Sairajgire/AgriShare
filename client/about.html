@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us – AgriShare</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="agri-navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🌾</div>
+        <div class="brand-text">Agri<span>Share</span></div>
+      </a>
+
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Navigation">☰</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link-item" data-i18n="nav.home">Home</a></li>
+        <li><a href="explore.html" class="nav-link-item" data-i18n="nav.explore">Explore Resources</a></li>
+        <li><a href="index.html#howItWorks" class="nav-link-item" data-i18n="nav.howItWorks">How It Works</a></li>
+        <li><a href="about.html" class="nav-link-item active" data-i18n="nav.about">About Us</a></li>
+        <li><a href="contact.html" class="nav-link-item" data-i18n="nav.contact">Contact</a></li>
+        <li id="adminNavLink" style="display: none;"><a href="admin.html" class="nav-link-item" style="color: var(--terracotta);" data-i18n="nav.admin">Admin Panel</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button id="langToggleBtn" class="lang-toggle-btn" title="Switch Language">
+          🌐 <strong>मराठी</strong>
+        </button>
+
+        <div id="guestNav" style="display: flex; gap: 0.5rem; align-items: center;">
+          <a href="login.html" class="btn-agri-outline" style="padding: 0.45rem 1rem; font-size: 0.88rem;" data-i18n="nav.login">Login</a>
+          <a href="register.html" class="btn-agri-primary" style="padding: 0.45rem 1rem; font-size: 0.88rem;" data-i18n="nav.register">Register</a>
+        </div>
+
+        <div id="userNav" style="display: none; gap: 0.75rem; align-items: center;">
+          <a href="dashboard.html?tab=resources&action=new" class="btn-agri-secondary" style="padding: 0.45rem 0.9rem; font-size: 0.85rem;" data-i18n="nav.listResource">+ List a Resource</a>
+          <a href="dashboard.html" class="btn-agri-outline" style="padding: 0.45rem 0.9rem; font-size: 0.85rem;">
+            👤 <span id="userNameDisplay">Farmer</span>
+          </a>
+          <a href="#" id="logoutBtn" class="nav-link-item" style="padding: 0.4rem; font-size: 0.85rem; color: var(--terracotta);" data-i18n="nav.logout">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- About Header -->
+  <header style="background: linear-gradient(rgba(36, 76, 50, 0.9), rgba(41, 45, 38, 0.92)), url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1800&q=80') center/cover; color: #fff; padding: 4rem 1.25rem; text-align: center;">
+    <div style="max-width: 800px; margin: 0 auto;">
+      <span style="color: var(--harvest-yellow); font-weight: 700; text-transform: uppercase; font-size: 0.88rem; letter-spacing: 1px;">MULTIDISCIPLINARY ENGINEERING MINOR PROJECT</span>
+      <h1 style="color: #ffffff; font-size: 2.5rem; margin: 0.5rem 0 1rem;">About AgriShare</h1>
+      <p style="color: var(--warm-cream); font-size: 1.1rem; line-height: 1.7;">
+        A web-based hyper-local platform designed to eliminate machinery shortages, reduce farmer debt, and foster community-driven agricultural resource exchange.
+      </p>
+    </div>
+  </header>
+
+  <!-- Project Overview Content -->
+  <section class="section">
+    <div class="section-container" style="max-width: 1000px;">
+      <div style="background: #ffffff; padding: 2.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); margin-bottom: 3rem;">
+        <h2 style="color: var(--forest-green); font-size: 1.8rem; margin-bottom: 1rem;">Our Mission & Problem Context</h2>
+        <p style="font-size: 1.05rem; color: var(--dark-charcoal); line-height: 1.8; margin-bottom: 1.25rem;">
+          In contemporary Indian agriculture, small and marginal farmers comprise more than 85% of operational landholdings. Despite their vital role in food security, high capital costs make essential machinery like 45+ HP tractors, laser land levellers, combine harvesters, and boom sprayers economically inaccessible.
+        </p>
+        <p style="font-size: 1.05rem; color: var(--dark-charcoal); line-height: 1.8; margin-bottom: 1.25rem;">
+          Simultaneously, medium and large farmers own modern machinery that sits idle in sheds for up to 250 days every year. AgriShare bridges this gap by creating an organized hyper-local sharing platform featuring <strong>Free Sharing</strong>, <strong>Barter Exchange</strong>, and <strong>Nominal Subsidized Rental</strong>.
+        </p>
+        <div style="background: var(--cream-surface); border-left: 4px solid var(--forest-green); padding: 1.25rem; border-radius: var(--radius-sm); font-size: 0.95rem; color: var(--dark-charcoal);">
+          <strong>Academic Focus:</strong> Developed for the subject <em>MDM – Remote Sensing and GIS</em> as a practical engineering minor project illustrating how spatial locality, community networks, and full-stack software architecture combine to address real-world rural challenges.
+        </div>
+      </div>
+
+      <!-- Student Team Section -->
+      <div class="section-header" style="margin-bottom: 2rem;">
+        <div class="section-pretitle">ENGINEERING PROJECT TEAM</div>
+        <h2 class="section-title">The Student Development Team</h2>
+        <p class="section-subtitle">Five undergraduate engineering students collaborating across frontend, backend, security, and systems integration.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+        
+        <div class="info-card" style="text-align: left; padding: 1.5rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <div style="width: 44px; height: 44px; background: var(--forest-green); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800;">OG</div>
+            <div>
+              <h4 style="margin: 0; color: var(--forest-green);">Omkar Ghongde</h4>
+              <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">BT42004</span>
+            </div>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0;">
+            <strong>Module:</strong> User Authentication and Profile Module. Implemented secure bcrypt hashing, JWT issuance, session state, and farmer profiling.
+          </p>
+        </div>
+
+        <div class="info-card" style="text-align: left; padding: 1.5rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <div style="width: 44px; height: 44px; background: var(--harvest-yellow); color: #3b2a06; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800;">YH</div>
+            <div>
+              <h4 style="margin: 0; color: var(--forest-green);">Yash Hingolikar</h4>
+              <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">BT42015</span>
+            </div>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0;">
+            <strong>Module:</strong> Resource Listing & Discovery UI. Designed responsive card grids, search algorithms, multi-filter dropdowns, and agricultural CSS styling.
+          </p>
+        </div>
+
+        <div class="info-card" style="text-align: left; padding: 1.5rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <div style="width: 44px; height: 44px; background: var(--terracotta); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800;">AJ</div>
+            <div>
+              <h4 style="margin: 0; color: var(--forest-green);">Arjun Joshi</h4>
+              <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">BT42025</span>
+            </div>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0;">
+            <strong>Module:</strong> User Data & Security Architecture. Engineered MongoDB Atlas schemas, role authorization, CORS policy, and environment isolation.
+          </p>
+        </div>
+
+        <div class="info-card" style="text-align: left; padding: 1.5rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <div style="width: 44px; height: 44px; background: var(--leaf-green); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800;">GU</div>
+            <div>
+              <h4 style="margin: 0; color: var(--forest-green);">Gopal Ubale</h4>
+              <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">BT42054</span>
+            </div>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0;">
+            <strong>Module:</strong> Resource Engine & Request Logic. Formulated date-overlap prevention, booking workflow states, and community review ratings.
+          </p>
+        </div>
+
+        <div class="info-card" style="text-align: left; padding: 1.5rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <div style="width: 44px; height: 44px; background: var(--olive-green); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800;">SG</div>
+            <div>
+              <h4 style="margin: 0; color: var(--forest-green);">Sairaj Gire</h4>
+              <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 600;">BT43050</span>
+            </div>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0;">
+            <strong>Module:</strong> Admin Dashboard & System Integration. Integrated frontend-backend endpoints, bilingual English/Marathi dictionary, and deployment.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="agri-footer">
+    <div class="footer-container">
+      <div class="footer-bottom" style="border: none; padding: 0;">
+        <span data-i18n="footer.rights">© 2026 AgriShare. Developed by Multidisciplinary Engineering Project Team.</span>
+        <span>MDM Minor Project – Remote Sensing & GIS</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

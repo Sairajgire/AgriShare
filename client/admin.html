@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard – AgriShare</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="agri-navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🌾</div>
+        <div class="brand-text">Agri<span>Share</span> <span style="font-size: 0.75rem; background: var(--terracotta); color: #fff; padding: 0.15rem 0.5rem; border-radius: 4px; vertical-align: middle;">ADMIN</span></div>
+      </a>
+
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Navigation">☰</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link-item" data-i18n="nav.home">Home</a></li>
+        <li><a href="explore.html" class="nav-link-item" data-i18n="nav.explore">Explore Resources</a></li>
+        <li><a href="dashboard.html" class="nav-link-item" data-i18n="nav.dashboard">Farmer Dashboard</a></li>
+        <li><a href="admin.html" class="nav-link-item active" style="color: var(--terracotta);" data-i18n="nav.admin">Admin Panel</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button id="langToggleBtn" class="lang-toggle-btn" title="Switch Language">
+          🌐 <strong>मराठी</strong>
+        </button>
+
+        <div id="userNav" style="display: flex; gap: 0.75rem; align-items: center;">
+          <a href="#" id="logoutBtn" class="nav-link-item" style="padding: 0.4rem; font-size: 0.85rem; color: var(--terracotta);" data-i18n="nav.logout">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="adminRoot" class="dashboard-container">
+    <div class="dash-header">
+      <div>
+        <h1 style="font-size: 2.1rem; color: var(--forest-green); margin-bottom: 0.25rem;">Administrator Control Center</h1>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Monitor platform growth, verify farmer listings, and maintain community trust.</p>
+      </div>
+      <div>
+        <span class="status-pill status-approved" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">
+          🛡️ Verified Administrator Mode
+        </span>
+      </div>
+    </div>
+
+    <!-- Admin Metric Cards Grid -->
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-bottom: 2.5rem;">
+      <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+        <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Total Farmers</div>
+        <div id="admTotalFarmers" style="font-size: 2rem; font-weight: 800; color: var(--forest-green); margin-top: 0.3rem;">0</div>
+      </div>
+
+      <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+        <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Total Resources</div>
+        <div id="admTotalResources" style="font-size: 2rem; font-weight: 800; color: var(--leaf-green); margin-top: 0.3rem;">0</div>
+      </div>
+
+      <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+        <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Active Listings</div>
+        <div id="admActiveListings" style="font-size: 2rem; font-weight: 800; color: #17723e; margin-top: 0.3rem;">0</div>
+      </div>
+
+      <div style="background: #fff; padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+        <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Completed Bookings</div>
+        <div id="admCompletedRequests" style="font-size: 2rem; font-weight: 800; color: var(--terracotta); margin-top: 0.3rem;">0</div>
+      </div>
+    </div>
+
+    <!-- Section 1: Resource Listings Moderation -->
+    <div style="margin-bottom: 3rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h3 style="color: var(--forest-green); margin: 0;">Agricultural Listings Moderation</h3>
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Manage and moderate all resources listed across the platform</span>
+      </div>
+
+      <div class="agri-table-card">
+        <table class="agri-table">
+          <thead>
+            <tr>
+              <th>Resource Name</th>
+              <th>Owner Details</th>
+              <th>Sharing Model</th>
+              <th>Approval Status</th>
+              <th>Moderation Actions</th>
+            </tr>
+          </thead>
+          <tbody id="adminResourcesTableBody">
+            <!-- Injected by admin.js -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Section 2: Registered Users Directory -->
+    <div style="margin-bottom: 3rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h3 style="color: var(--forest-green); margin: 0;">Registered Farmers & Users Directory</h3>
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Manage registered farmer accounts and permissions</span>
+      </div>
+
+      <div class="agri-table-card">
+        <table class="agri-table">
+          <thead>
+            <tr>
+              <th>Farmer Name & Email</th>
+              <th>Contact Phone</th>
+              <th>Village & District</th>
+              <th>Farming Profile</th>
+              <th>Role</th>
+              <th>Account Actions</th>
+            </tr>
+          </thead>
+          <tbody id="adminUsersTableBody">
+            <!-- Injected by admin.js -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="agri-footer">
+    <div class="footer-container">
+      <div class="footer-bottom" style="border: none; padding: 0;">
+        <span data-i18n="footer.rights">© 2026 AgriShare. Developed by Multidisciplinary Engineering Project Team.</span>
+        <span>MDM Minor Project – Remote Sensing & GIS</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resource Details – AgriShare</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="agri-navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🌾</div>
+        <div class="brand-text">Agri<span>Share</span></div>
+      </a>
+
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Navigation">☰</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link-item" data-i18n="nav.home">Home</a></li>
+        <li><a href="explore.html" class="nav-link-item active" data-i18n="nav.explore">Explore Resources</a></li>
+        <li><a href="index.html#howItWorks" class="nav-link-item" data-i18n="nav.howItWorks">How It Works</a></li>
+        <li><a href="about.html" class="nav-link-item" data-i18n="nav.about">About Us</a></li>
+        <li><a href="contact.html" class="nav-link-item" data-i18n="nav.contact">Contact</a></li>
+        <li id="adminNavLink" style="display: none;"><a href="admin.html" class="nav-link-item" style="color: var(--terracotta);" data-i18n="nav.admin">Admin Panel</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button id="langToggleBtn" class="lang-toggle-btn" title="Switch Language">
+          🌐 <strong>मराठी</strong>
+        </button>
+
+        <div id="guestNav" style="display: flex; gap: 0.5rem; align-items: center;">
+          <a href="login.html" class="btn-agri-outline" style="padding: 0.45rem 1rem; font-size: 0.88rem;" data-i18n="nav.login">Login</a>
+          <a href="register.html" class="btn-agri-primary" style="padding: 0.45rem 1rem; font-size: 0.88rem;" data-i18n="nav.register">Register</a>
+        </div>
+
+        <div id="userNav" style="display: none; gap: 0.75rem; align-items: center;">
+          <a href="dashboard.html?tab=resources&action=new" class="btn-agri-secondary" style="padding: 0.45rem 0.9rem; font-size: 0.85rem;" data-i18n="nav.listResource">+ List a Resource</a>
+          <a href="dashboard.html" class="btn-agri-outline" style="padding: 0.45rem 0.9rem; font-size: 0.85rem;">
+            👤 <span id="userNameDisplay">Farmer</span>
+          </a>
+          <a href="#" id="logoutBtn" class="nav-link-item" style="padding: 0.4rem; font-size: 0.85rem; color: var(--terracotta);" data-i18n="nav.logout">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumbs Bar -->
+  <div style="background-color: #fff; border-bottom: 1px solid var(--border-color); padding: 0.75rem 1.25rem;">
+    <div style="max-width: 1240px; margin: 0 auto; font-size: 0.85rem; color: var(--text-muted);">
+      <a href="index.html">Home</a> &gt; <a href="explore.html">Resources</a> &gt; <span style="color: var(--forest-green); font-weight: 600;">Resource Details</span>
+    </div>
+  </div>
+
+  <!-- Resource Details Body Container -->
+  <main class="section-container" style="padding: 2.5rem 1.25rem 4rem; flex-grow: 1;">
+    <div id="resourceDetailsContainer">
+      <!-- Injected by requests.js -->
+    </div>
+  </main>
+
+  <!-- Booking Request Modal -->
+  <div id="requestModal" class="agri-modal-backdrop">
+    <div class="agri-modal">
+      <div class="agri-modal-header">
+        <h3 style="margin: 0; color: var(--forest-green); font-size: 1.25rem;">Request Agricultural Resource</h3>
+        <button onclick="closeBookingModal()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted);">&times;</button>
+      </div>
+
+      <form id="bookingForm">
+        <div class="agri-modal-body">
+          <div id="bookingError" class="alert-box alert-error" style="display: none;"></div>
+
+          <div style="background: var(--cream-surface); padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 1.25rem; font-size: 0.88rem;">
+            Please select the exact dates you require this machinery. The resource owner will receive your request directly for confirmation.
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label">Required From (Start Date) *</label>
+              <input type="date" id="bookingStartDate" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Required To (End Date) *</label>
+              <input type="date" id="bookingEndDate" class="form-control" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Message for Resource Owner (Optional)</label>
+            <textarea id="bookingMessage" class="form-control" rows="3" placeholder="Explain your crop, acre size, or any specific logistics arrangement..."></textarea>
+          </div>
+        </div>
+
+        <div class="agri-modal-footer">
+          <button type="button" class="btn-agri-outline" onclick="closeBookingModal()">Cancel</button>
+          <button type="submit" id="submitBookingBtn" class="btn-agri-primary">Confirm & Send Request</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="agri-footer">
+    <div class="footer-container">
+      <div class="footer-bottom" style="border: none; padding: 0;">
+        <span data-i18n="footer.rights">© 2026 AgriShare. Developed by Multidisciplinary Engineering Project Team.</span>
+        <span>MDM Minor Project – Remote Sensing & GIS</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/requests.js"></script>
+</body>
+</html>

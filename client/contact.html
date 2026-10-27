@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Support – AgriShare</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="agri-navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🌾</div>
+        <div class="brand-text">Agri<span>Share</span></div>
+      </a>
+
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Navigation">☰</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link-item" data-i18n="nav.home">Home</a></li>
+        <li><a href="explore.html" class="nav-link-item" data-i18n="nav.explore">Explore Resources</a></li>
+        <li><a href="index.html#howItWorks" class="nav-link-item" data-i18n="nav.howItWorks">How It Works</a></li>
+        <li><a href="about.html" class="nav-link-item" data-i18n="nav.about">About Us</a></li>
+        <li><a href="contact.html" class="nav-link-item active" data-i18n="nav.contact">Contact</a></li>
+        <li id="adminNavLink" style="display: none;"><a href="admin.html" class="nav-link-item" style="color: var(--terracotta);" data-i18n="nav.admin">Admin Panel</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button id="langToggleBtn" class="lang-toggle-btn" title="Switch Language">
+          🌐 <strong>मराठी</strong>
+        </button>
+
+        <div id="guestNav" style="display: flex; gap: 0.5rem; align-items: center;">
+          <a href="login.html" class="btn-agri-outline" style="padding: 0.45rem 1rem; font-size: 0.88rem;" data-i18n="nav.login">Login</a>
+          <a href="register.html" class="btn-agri-primary" style="padding: 0.45rem 1rem; font-size: 0.88rem;" data-i18n="nav.register">Register</a>
+        </div>
+
+        <div id="userNav" style="display: none; gap: 0.75rem; align-items: center;">
+          <a href="dashboard.html?tab=resources&action=new" class="btn-agri-secondary" style="padding: 0.45rem 0.9rem; font-size: 0.85rem;" data-i18n="nav.listResource">+ List a Resource</a>
+          <a href="dashboard.html" class="btn-agri-outline" style="padding: 0.45rem 0.9rem; font-size: 0.85rem;">
+            👤 <span id="userNameDisplay">Farmer</span>
+          </a>
+          <a href="#" id="logoutBtn" class="nav-link-item" style="padding: 0.4rem; font-size: 0.85rem; color: var(--terracotta);" data-i18n="nav.logout">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contact Header -->
+  <header style="background-color: var(--forest-green); color: #fff; padding: 3.5rem 1.25rem; text-align: center;">
+    <div style="max-width: 800px; margin: 0 auto;">
+      <h1 style="color: #ffffff; font-size: 2.3rem; margin-bottom: 0.5rem;">Contact & Farmer Support</h1>
+      <p style="color: var(--warm-cream); font-size: 1.05rem;">
+        Need help registering machinery, reaching a peer farmer, or resolving a sharing question? We're here for you.
+      </p>
+    </div>
+  </header>
+
+  <!-- Contact Content & FAQ Grid -->
+  <main class="section-container" style="padding: 3rem 1.25rem 4rem; flex-grow: 1;">
+    <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem;">
+      
+      <!-- Contact Info & Form -->
+      <div>
+        <div style="background: #ffffff; padding: 2rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); margin-bottom: 2rem;">
+          <h3 style="color: var(--forest-green); margin-bottom: 1.25rem;">Send Us a Message</h3>
+          
+          <form onsubmit="event.preventDefault(); alert('Thank you for contacting AgriShare Support! Our team will respond shortly.'); this.reset();">
+            <div class="form-group">
+              <label class="form-label">Farmer Full Name *</label>
+              <input type="text" class="form-control" required placeholder="Your name">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Phone Number *</label>
+              <input type="tel" class="form-control" required placeholder="10-digit mobile number">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Village & District *</label>
+              <input type="text" class="form-control" required placeholder="e.g. Baramati, Pune">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Topic / Issue *</label>
+              <select class="form-select">
+                <option>Help with Resource Request</option>
+                <option>Help with Listing Machinery</option>
+                <option>Barter Exchange Guidance</option>
+                <option>Report Inappropriate Listing</option>
+                <option>General Feedback / Suggestion</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Message Details *</label>
+              <textarea class="form-control" rows="3" required placeholder="Describe your question or difficulty..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-agri-primary" style="width: 100%; justify-content: center; padding: 0.75rem;">
+              Send Inquiry →
+            </button>
+          </form>
+        </div>
+
+        <div style="background: var(--cream-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.5rem;">
+          <h4 style="color: var(--forest-green); margin-bottom: 0.75rem;">Direct Helpdesk</h4>
+          <p style="font-size: 0.9rem; margin-bottom: 0.4rem;">📞 <strong>Helpline:</strong> +91 98765 43210 (9:00 AM – 6:00 PM)</p>
+          <p style="font-size: 0.9rem; margin-bottom: 0.4rem;">✉️ <strong>Support Email:</strong> support@agrishare.org</p>
+          <p style="font-size: 0.9rem; margin: 0;">📍 <strong>College Center:</strong> MDM Minor Project Lab, Engineering Department</p>
+        </div>
+      </div>
+
+      <!-- Frequently Asked Questions -->
+      <div>
+        <h3 style="color: var(--forest-green); margin-bottom: 1.25rem;">Frequently Asked Questions</h3>
+
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+            <h4 style="font-size: 1.05rem; color: var(--forest-green); margin-bottom: 0.4rem;">1. Is AgriShare free to join for farmers?</h4>
+            <p style="font-size: 0.9rem; color: var(--dark-charcoal); margin: 0;">
+              Yes! Registering as a farmer and listing your tools or exploring resources is 100% free with zero registration fees or recurring charges.
+            </p>
+          </div>
+
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+            <h4 style="font-size: 1.05rem; color: var(--forest-green); margin-bottom: 0.4rem;">2. How are payments handled for Nominal Rental?</h4>
+            <p style="font-size: 0.9rem; color: var(--dark-charcoal); margin: 0;">
+              To keep the platform simple, transparent, and accessible without expensive payment gateway deductions, nominal rental amounts are paid directly peer-to-peer (via UPI or cash) between farmers upon machine inspection and handover.
+            </p>
+          </div>
+
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+            <h4 style="font-size: 1.05rem; color: var(--forest-green); margin-bottom: 0.4rem;">3. How does Barter Exchange work?</h4>
+            <p style="font-size: 0.9rem; color: var(--dark-charcoal); margin: 0;">
+              Farmers specify in their listing what they need in exchange (for example, lending a cultivator in exchange for 2 days of threshing labour or quality organic seeds). Both farmers confirm terms via the request workflow before exchange.
+            </p>
+          </div>
+
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+            <h4 style="font-size: 1.05rem; color: var(--forest-green); margin-bottom: 0.4rem;">4. Can I switch the website language to Marathi?</h4>
+            <p style="font-size: 0.9rem; color: var(--dark-charcoal); margin: 0;">
+              Yes. Simply click the <strong>🌐 मराठी</strong> toggle in the top navigation bar. All labels, buttons, categories, and dashboards will instantly translate into Marathi and remain saved during your session.
+            </p>
+          </div>
+
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+            <h4 style="font-size: 1.05rem; color: var(--forest-green); margin-bottom: 0.4rem;">5. Can two farmers book the same tractor on overlapping dates?</h4>
+            <p style="font-size: 0.9rem; color: var(--dark-charcoal); margin: 0;">
+              No. The backend database automatically enforces date-conflict validation, rejecting overlapping approvals so farmers are never double-booked.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="agri-footer">
+    <div class="footer-container">
+      <div class="footer-bottom" style="border: none; padding: 0;">
+        <span data-i18n="footer.rights">© 2026 AgriShare. Developed by Multidisciplinary Engineering Project Team.</span>
+        <span>MDM Minor Project – Remote Sensing & GIS</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

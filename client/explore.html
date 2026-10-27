@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Resources – AgriShare</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="agri-navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🌾</div>
+        <div class="brand-text">Agri<span>Share</span></div>
+      </a>
+
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Navigation">☰</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link-item" data-i18n="nav.home">Home</a></li>
+        <li><a href="explore.html" class="nav-link-item active" data-i18n="nav.explore">Explore Resources</a></li>
+        <li><a href="index.html#howItWorks" class="nav-link-item" data-i18n="nav.howItWorks">How It Works</a></li>
+        <li><a href="about.html" class="nav-link-item" data-i18n="nav.about">About Us</a></li>
+        <li><a href="contact.html" class="nav-link-item" data-i18n="nav.contact">Contact</a></li>
+        <li id="adminNavLink" style="display: none;"><a href="admin.html" class="nav-link-item" style="color: var(--terracotta);" data-i18n="nav.admin">Admin Panel</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button id="langToggleBtn" class="lang-toggle-btn" title="Switch Language">
+          🌐 <strong>मराठी</strong>
+        </button>
+
+        <div id="guestNav" style="display: flex; gap: 0.5rem; align-items: center;">
+          <a href="login.html" class="btn-agri-outline" style="padding: 0.45rem 1rem; font-size: 0.88rem;" data-i18n="nav.login">Login</a>
+          <a href="register.html" class="btn-agri-primary" style="padding: 0.45rem 1rem; font-size: 0.88rem;" data-i18n="nav.register">Register</a>
+        </div>
+
+        <div id="userNav" style="display: none; gap: 0.75rem; align-items: center;">
+          <a href="dashboard.html?tab=resources&action=new" class="btn-agri-secondary" style="padding: 0.45rem 0.9rem; font-size: 0.85rem;" data-i18n="nav.listResource">+ List a Resource</a>
+          <a href="dashboard.html" class="btn-agri-outline" style="padding: 0.45rem 0.9rem; font-size: 0.85rem;">
+            👤 <span id="userNameDisplay">Farmer</span>
+          </a>
+          <a href="#" id="logoutBtn" class="nav-link-item" style="padding: 0.4rem; font-size: 0.85rem; color: var(--terracotta);" data-i18n="nav.logout">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section style="background-color: var(--forest-green); color: #fff; padding: 3rem 1.25rem 3.5rem; text-align: center;">
+    <div style="max-width: 800px; margin: 0 auto;">
+      <h1 style="color: #ffffff; font-size: 2.4rem; margin-bottom: 0.5rem;" data-i18n="explore.title">Explore Agricultural Resources</h1>
+      <p style="color: var(--warm-cream); font-size: 1.05rem;" data-i18n="explore.sub">
+        Find tractors, implements, irrigation pumps, and supplies available in your district.
+      </p>
+    </div>
+  </section>
+
+  <!-- Filter Controls Bar -->
+  <div style="max-width: 1240px; margin: -1.75rem auto 2.5rem; padding: 0 1.25rem; position: relative; z-index: 10;">
+    <div style="background: #ffffff; border-radius: var(--radius-md); padding: 1.5rem; box-shadow: var(--shadow-md); border: 1px solid var(--border-color);">
+      <div style="display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 1rem; align-items: center;">
+        
+        <!-- Search Input -->
+        <div>
+          <label class="form-label" style="font-size: 0.8rem; text-transform: uppercase;">Search by Keyword</label>
+          <input type="text" id="searchInput" class="form-control" placeholder="Search by resource, village, or implement..." data-i18n-placeholder="explore.searchPlaceholder">
+        </div>
+
+        <!-- Category Dropdown -->
+        <div>
+          <label class="form-label" style="font-size: 0.8rem; text-transform: uppercase;">Category</label>
+          <select id="categoryFilter" class="form-select">
+            <option value="All">All Categories</option>
+            <option value="Agricultural Machinery">Agricultural Machinery</option>
+            <option value="Tractors">Tractors</option>
+            <option value="Harvesters">Harvesters</option>
+            <option value="Seed Drills">Seed Drills</option>
+            <option value="Cultivators">Cultivators / Rotavators</option>
+            <option value="Irrigation Equipment">Irrigation Equipment</option>
+            <option value="Sprayers">Sprayers</option>
+            <option value="Farming Tools">Farming Tools</option>
+            <option value="Seeds">Seeds</option>
+            <option value="Fertilizers">Fertilizers</option>
+            <option value="Storage Facilities">Storage Facilities</option>
+            <option value="Transport">Transport</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <!-- District Filter -->
+        <div>
+          <label class="form-label" style="font-size: 0.8rem; text-transform: uppercase;">District</label>
+          <select id="districtFilter" class="form-select">
+            <option value="All" data-i18n="explore.filterDistrict">All Districts</option>
+            <option value="Pune">Pune</option>
+            <option value="Satara">Satara</option>
+            <option value="Solapur">Solapur</option>
+            <option value="Ahmednagar">Ahmednagar</option>
+            <option value="Nashik">Nashik</option>
+            <option value="Kolhapur">Kolhapur</option>
+            <option value="Sangli">Sangli</option>
+            <option value="Aurangabad">Chhatrapati Sambhajinagar</option>
+          </select>
+        </div>
+
+        <!-- Sharing Model Filter -->
+        <div>
+          <label class="form-label" style="font-size: 0.8rem; text-transform: uppercase;">Sharing Model</label>
+          <select id="sharingFilter" class="form-select">
+            <option value="All" data-i18n="explore.filterModel">All Sharing Models</option>
+            <option value="Free Sharing">Free Sharing</option>
+            <option value="Barter Exchange">Barter Exchange</option>
+            <option value="Nominal Rental">Nominal Rental</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; border-top: 1px solid #f1ece1; padding-top: 0.75rem;">
+        <span id="exploreResultCount" style="font-size: 0.85rem; font-weight: 700; color: var(--forest-green);">Showing resources</span>
+        <button onclick="resetExploreFilters()" class="btn-agri-outline" style="padding: 0.25rem 0.75rem; font-size: 0.8rem;" data-i18n="explore.resetFilters">Reset Filters</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Resources Grid Container -->
+  <main class="section-container" style="padding: 0 1.25rem 4rem; flex-grow: 1;">
+    <div id="exploreGrid" class="resource-grid">
+      <!-- Injected by resources.js -->
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="agri-footer">
+    <div class="footer-container">
+      <div class="footer-bottom" style="border: none; padding: 0;">
+        <span data-i18n="footer.rights">© 2026 AgriShare. Developed by Multidisciplinary Engineering Project Team.</span>
+        <span>MDM Minor Project – Remote Sensing & GIS</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/resources.js"></script>
+</body>
+</html>

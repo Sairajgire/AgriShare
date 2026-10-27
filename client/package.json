@@ -1,0 +1,11 @@
+{
+  "name": "agrishare-client",
+  "version": "1.0.0",
+  "description": "Frontend for AgriShare Agricultural Resource Sharing & Exchange Platform",
+  "scripts": {
+    "start": "serve . -p 3000"
+  },
+  "devDependencies": {
+    "serve": "^14.2.1"
+  }
+}

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmer Dashboard – AgriShare</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="agri-navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🌾</div>
+        <div class="brand-text">Agri<span>Share</span></div>
+      </a>
+
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Navigation">☰</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link-item" data-i18n="nav.home">Home</a></li>
+        <li><a href="explore.html" class="nav-link-item" data-i18n="nav.explore">Explore Resources</a></li>
+        <li><a href="dashboard.html" class="nav-link-item active" data-i18n="nav.dashboard">Dashboard</a></li>
+        <li><a href="about.html" class="nav-link-item" data-i18n="nav.about">About Us</a></li>
+        <li><a href="contact.html" class="nav-link-item" data-i18n="nav.contact">Contact</a></li>
+        <li id="adminNavLink" style="display: none;"><a href="admin.html" class="nav-link-item" style="color: var(--terracotta);" data-i18n="nav.admin">Admin Panel</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button id="langToggleBtn" class="lang-toggle-btn" title="Switch Language">
+          🌐 <strong>मराठी</strong>
+        </button>
+
+        <div id="userNav" style="display: flex; gap: 0.75rem; align-items: center;">
+          <button onclick="openAddResourceModal()" class="btn-agri-secondary" style="padding: 0.45rem 0.9rem; font-size: 0.85rem;" data-i18n="nav.listResource">+ List a Resource</button>
+          <a href="#" id="logoutBtn" class="nav-link-item" style="padding: 0.4rem; font-size: 0.85rem; color: var(--terracotta);" data-i18n="nav.logout">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Dashboard Container -->
+  <div id="dashboardRoot" class="dashboard-container">
+    <div class="dash-header">
+      <div>
+        <h1 style="font-size: 2.1rem; color: var(--forest-green); margin-bottom: 0.25rem;" data-i18n="dash.title">Farmer Dashboard</h1>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Manage your agricultural listings, monitor bookings, and update profile.</p>
+      </div>
+      <div>
+        <button onclick="openAddResourceModal()" class="btn-agri-primary">
+          🌾 <span data-i18n="dash.addResource">+ Add New Resource</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="dash-tabs">
+      <button class="dash-tab-btn active" data-tab="overview">📊 <span data-i18n="dash.tabOverview">Overview</span></button>
+      <button class="dash-tab-btn" data-tab="resources">🚜 <span data-i18n="dash.tabMyResources">My Resources</span></button>
+      <button class="dash-tab-btn" data-tab="incoming">📥 <span data-i18n="dash.tabIncoming">Incoming Requests</span></button>
+      <button class="dash-tab-btn" data-tab="requests">📤 <span data-i18n="dash.tabMyRequests">My Requests</span></button>
+      <button class="dash-tab-btn" data-tab="profile">⚙️ <span data-i18n="dash.tabProfile">My Profile</span></button>
+    </div>
+
+    <!-- TAB 1: OVERVIEW -->
+    <div id="overviewTab" class="dash-tab-content">
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2.5rem;">
+        <div style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted);" data-i18n="dash.totalResources">My Listed Resources</span>
+            <span style="font-size: 1.5rem;">🚜</span>
+          </div>
+          <div id="dashTotalResources" style="font-size: 2.2rem; font-weight: 800; color: var(--forest-green);">0</div>
+        </div>
+
+        <div style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted);" data-i18n="dash.incomingReq">Pending Incoming</span>
+            <span style="font-size: 1.5rem;">📥</span>
+          </div>
+          <div id="dashIncomingRequests" style="font-size: 2.2rem; font-weight: 800; color: var(--harvest-yellow);">0</div>
+        </div>
+
+        <div style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted);" data-i18n="dash.outgoingReq">My Bookings</span>
+            <span style="font-size: 1.5rem;">📤</span>
+          </div>
+          <div id="dashOutgoingRequests" style="font-size: 2.2rem; font-weight: 800; color: var(--terracotta);">0</div>
+        </div>
+
+        <div style="background: #fff; padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted);" data-i18n="dash.approvedReq">Approved Bookings</span>
+            <span style="font-size: 1.5rem;">✅</span>
+          </div>
+          <div id="dashApprovedRequests" style="font-size: 2.2rem; font-weight: 800; color: var(--leaf-green);">0</div>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem;">
+        <div style="background: #fff; border-radius: var(--radius-md); border: 1px solid var(--border-color); padding: 1.75rem;">
+          <h3 style="font-size: 1.2rem; color: var(--forest-green); margin-bottom: 1rem;">Actionable Incoming Requests</h3>
+          <div id="overviewIncomingPreview">
+            <!-- Dynamic Preview List -->
+          </div>
+        </div>
+
+        <div style="background: #fff; border-radius: var(--radius-md); border: 1px solid var(--border-color); padding: 1.75rem;">
+          <h3 style="font-size: 1.2rem; color: var(--forest-green); margin-bottom: 1rem;">Quick Actions</h3>
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            <button onclick="openAddResourceModal()" class="btn-agri-secondary" style="width: 100%; justify-content: flex-start;">
+              ➕ List an idle Tractor, Pump or Tool
+            </button>
+            <a href="explore.html" class="btn-agri-outline" style="width: 100%; justify-content: flex-start;">
+              🔍 Browse Equipment in Neighbouring Villages
+            </a>
+            <button onclick="switchTab('profile')" class="btn-agri-outline" style="width: 100%; justify-content: flex-start;">
+              👤 Update Landholding and Contact Details
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: MY RESOURCES -->
+    <div id="resourcesTab" class="dash-tab-content" style="display: none;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <h3 style="margin: 0; color: var(--forest-green);">My Listed Resources</h3>
+        <button onclick="openAddResourceModal()" class="btn-agri-primary" style="font-size: 0.88rem; padding: 0.5rem 1rem;">
+          + Add New Resource
+        </button>
+      </div>
+
+      <div class="agri-table-card">
+        <table class="agri-table">
+          <thead>
+            <tr>
+              <th>Resource Name</th>
+              <th>Sharing Model</th>
+              <th>Price / Terms</th>
+              <th>Available Dates</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="myResourcesTableBody">
+            <!-- Populated by dashboard.js -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB 3: INCOMING REQUESTS -->
+    <div id="incomingTab" class="dash-tab-content" style="display: none;">
+      <h3 style="color: var(--forest-green); margin-bottom: 1.25rem;">Incoming Requests from Other Farmers</h3>
+      <div class="agri-table-card">
+        <table class="agri-table">
+          <thead>
+            <tr>
+              <th>Requested Resource</th>
+              <th>Borrower Details</th>
+              <th>Booking Dates</th>
+              <th>Message</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="incomingRequestsTableBody">
+            <!-- Populated by dashboard.js -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB 4: MY REQUESTS (OUTGOING) -->
+    <div id="requestsTab" class="dash-tab-content" style="display: none;">
+      <h3 style="color: var(--forest-green); margin-bottom: 1.25rem;">Resources You Have Requested</h3>
+      <div class="agri-table-card">
+        <table class="agri-table">
+          <thead>
+            <tr>
+              <th>Resource Name</th>
+              <th>Owner Details</th>
+              <th>Requested Dates</th>
+              <th>Sharing Model</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="myRequestsTableBody">
+            <!-- Populated by dashboard.js -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB 5: PROFILE -->
+    <div id="profileTab" class="dash-tab-content" style="display: none;">
+      <div style="max-width: 700px; background: #fff; padding: 2rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-sm);">
+        <h3 style="color: var(--forest-green); margin-bottom: 1.5rem;">Farmer Profile & Land Details</h3>
+        <form id="profileForm">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" id="profName" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address (Read-only)</label>
+              <input type="email" id="profEmail" class="form-control" readonly style="background-color: #f5f5f5;">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Mobile Number *</label>
+              <input type="text" id="profPhone" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Village / Town *</label>
+              <input type="text" id="profVillage" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">District *</label>
+              <select id="profDistrict" class="form-select" required>
+                <option value="Pune">Pune</option>
+                <option value="Satara">Satara</option>
+                <option value="Solapur">Solapur</option>
+                <option value="Ahmednagar">Ahmednagar</option>
+                <option value="Nashik">Nashik</option>
+                <option value="Kolhapur">Kolhapur</option>
+                <option value="Sangli">Sangli</option>
+                <option value="Aurangabad">Chhatrapati Sambhajinagar</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">State</label>
+              <input type="text" id="profState" class="form-control" value="Maharashtra" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Landholding Size</label>
+              <select id="profLandholding" class="form-select">
+                <option value="Marginal (< 1 Acre)">Marginal (< 1 Acre)</option>
+                <option value="Small (1 - 2.5 Acres)">Small (1 - 2.5 Acres)</option>
+                <option value="Semi-Medium (2.5 - 5 Acres)">Semi-Medium (2.5 - 5 Acres)</option>
+                <option value="Medium (5 - 10 Acres)">Medium (5 - 10 Acres)</option>
+                <option value="Large (> 10 Acres)">Large (> 10 Acres)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Primary Farming Type</label>
+              <input type="text" id="profFarmingType" class="form-control" placeholder="e.g. Sugarcane, Vegetables, Organic Pulses">
+            </div>
+          </div>
+          <div style="margin-top: 1.5rem; text-align: right;">
+            <button type="submit" class="btn-agri-primary">Save Profile Updates</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add/Edit Resource Modal -->
+  <div id="resourceModal" class="agri-modal-backdrop">
+    <div class="agri-modal" style="max-width: 720px;">
+      <div class="agri-modal-header">
+        <h3 id="resourceModalTitle" style="margin: 0; color: var(--forest-green); font-size: 1.25rem;">List Agricultural Resource</h3>
+        <button onclick="closeResourceModal()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted);">&times;</button>
+      </div>
+
+      <form id="resourceForm">
+        <input type="hidden" id="resourceIdField">
+        <div class="agri-modal-body">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group" style="grid-column: 1 / -1;">
+              <label class="form-label">Resource Name (Machinery / Implement / Input) *</label>
+              <input type="text" id="resName" class="form-control" placeholder="e.g. Mahindra 575 DI Tractor with Plough" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Resource Category *</label>
+              <select id="resCategory" class="form-select" required>
+                <option value="Agricultural Machinery">Agricultural Machinery</option>
+                <option value="Tractors">Tractors</option>
+                <option value="Harvesters">Harvesters</option>
+                <option value="Seed Drills">Seed Drills</option>
+                <option value="Cultivators">Cultivators / Rotavators</option>
+                <option value="Irrigation Equipment">Irrigation Equipment</option>
+                <option value="Sprayers">Sprayers</option>
+                <option value="Farming Tools">Farming Tools</option>
+                <option value="Seeds">Seeds</option>
+                <option value="Fertilizers">Fertilizers</option>
+                <option value="Storage Facilities">Storage Facilities</option>
+                <option value="Transport">Transport</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Image URL</label>
+              <input type="url" id="resImageUrl" class="form-control" placeholder="https://example.com/tractor.jpg">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Village / Locality *</label>
+              <input type="text" id="resVillage" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">District *</label>
+              <select id="resDistrict" class="form-select" required>
+                <option value="Pune">Pune</option>
+                <option value="Satara">Satara</option>
+                <option value="Solapur">Solapur</option>
+                <option value="Ahmednagar">Ahmednagar</option>
+                <option value="Nashik">Nashik</option>
+                <option value="Kolhapur">Kolhapur</option>
+                <option value="Sangli">Sangli</option>
+                <option value="Aurangabad">Chhatrapati Sambhajinagar</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Sharing Model *</label>
+              <select id="resSharingType" class="form-select" required>
+                <option value="Free Sharing">Free Sharing</option>
+                <option value="Barter Exchange">Barter Exchange</option>
+                <option value="Nominal Rental">Nominal Rental</option>
+              </select>
+            </div>
+
+            <div class="form-group" id="priceFieldGroup" style="display: none;">
+              <label class="form-label">Subsidized Rental Price (₹ per day) *</label>
+              <input type="number" id="resPrice" class="form-control" placeholder="e.g. 500" min="0">
+            </div>
+
+            <div class="form-group" id="barterFieldGroup" style="display: none; grid-column: 1 / -1;">
+              <label class="form-label">Barter Exchange Terms *</label>
+              <input type="text" id="resBarter" class="form-control" placeholder="e.g. Need rotavator usage in exchange, or 2 bags organic seed">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Available From *</label>
+              <input type="date" id="resAvailableFrom" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Available Until *</label>
+              <input type="date" id="resAvailableTo" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Current Status</label>
+              <select id="resStatus" class="form-select">
+                <option value="Available">Available</option>
+                <option value="Booked">Booked</option>
+                <option value="Under Maintenance">Under Maintenance</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="grid-column: 1 / -1;">
+              <label class="form-label">Description & Operational Condition *</label>
+              <textarea id="resDescription" class="form-control" rows="3" placeholder="Mention HP, attachments, fuel condition, or terms..." required></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="agri-modal-footer">
+          <button type="button" class="btn-agri-outline" onclick="closeResourceModal()">Cancel</button>
+          <button type="submit" class="btn-agri-primary">Save Listing</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="agri-footer">
+    <div class="footer-container">
+      <div class="footer-bottom" style="border: none; padding: 0;">
+        <span data-i18n="footer.rights">© 2026 AgriShare. Developed by Multidisciplinary Engineering Project Team.</span>
+        <span>MDM Minor Project – Remote Sensing & GIS</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

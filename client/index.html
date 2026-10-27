@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriShare – Agricultural Resource Sharing & Exchange Platform</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="agri-navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">🌾</div>
+        <div class="brand-text">Agri<span>Share</span></div>
+      </a>
+
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle Navigation">☰</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="nav-link-item active" data-i18n="nav.home">Home</a></li>
+        <li><a href="explore.html" class="nav-link-item" data-i18n="nav.explore">Explore Resources</a></li>
+        <li><a href="#howItWorks" class="nav-link-item" data-i18n="nav.howItWorks">How It Works</a></li>
+        <li><a href="about.html" class="nav-link-item" data-i18n="nav.about">About Us</a></li>
+        <li><a href="contact.html" class="nav-link-item" data-i18n="nav.contact">Contact</a></li>
+        <li id="adminNavLink" style="display: none;"><a href="admin.html" class="nav-link-item" style="color: var(--terracotta);" data-i18n="nav.admin">Admin Panel</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- Language Toggle -->
+        <button id="langToggleBtn" class="lang-toggle-btn" title="Switch Language">
+          🌐 <strong>मराठी</strong>
+        </button>
+
+        <!-- Guest Links -->
+        <div id="guestNav" style="display: flex; gap: 0.5rem; align-items: center;">
+          <a href="login.html" class="btn-agri-outline" style="padding: 0.45rem 1rem; font-size: 0.88rem;" data-i18n="nav.login">Login</a>
+          <a href="register.html" class="btn-agri-primary" style="padding: 0.45rem 1rem; font-size: 0.88rem;" data-i18n="nav.register">Register</a>
+        </div>
+
+        <!-- Logged-in Links -->
+        <div id="userNav" style="display: none; gap: 0.75rem; align-items: center;">
+          <a href="dashboard.html?tab=resources&action=new" class="btn-agri-secondary" style="padding: 0.45rem 0.9rem; font-size: 0.85rem;" data-i18n="nav.listResource">+ List a Resource</a>
+          <a href="dashboard.html" class="btn-agri-outline" style="padding: 0.45rem 0.9rem; font-size: 0.85rem;">
+            👤 <span id="userNameDisplay">Farmer</span>
+          </a>
+          <a href="#" id="logoutBtn" class="nav-link-item" style="padding: 0.4rem; font-size: 0.85rem; color: var(--terracotta);" data-i18n="nav.logout">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 5.1 Hero Section -->
+  <header class="hero-section">
+    <div class="hero-content">
+      <div class="hero-badge" data-i18n="hero.badge">Community Driven Agricultural Sharing</div>
+      <h1 class="hero-title" data-i18n="hero.title">Growing Together, Sharing Smarter.</h1>
+      <p class="hero-subtitle" data-i18n="hero.desc">
+        Empowering farmers through affordable agricultural resource sharing. Discover nearby equipment, exchange resources and build stronger farming communities.
+      </p>
+      <div class="hero-cta">
+        <a href="explore.html" class="btn-agri-secondary" style="padding: 0.75rem 1.75rem; font-size: 1.05rem;" data-i18n="hero.btnExplore">
+          Explore Resources →
+        </a>
+        <a href="register.html" class="btn-agri-outline" style="background: rgba(255,255,255,0.1); border-color: #ffffff; color: #ffffff !important; padding: 0.75rem 1.75rem; font-size: 1.05rem;" data-i18n="hero.btnJoin">
+          Join AgriShare
+        </a>
+        <a href="dashboard.html?tab=resources&action=new" class="btn-agri-primary" style="padding: 0.75rem 1.75rem; font-size: 1.05rem;" data-i18n="hero.btnList">
+          List Your Resource
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 5.2 Platform Statistics Bar -->
+  <section class="stats-bar-wrapper">
+    <div class="stats-card-container">
+      <div class="stat-item">
+        <div class="stat-icon green">👨‍🌾</div>
+        <div>
+          <div class="stat-value" id="statFarmers">30+</div>
+          <div class="stat-label" data-i18n="stat.farmers">Registered Farmers</div>
+        </div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon yellow">🚜</div>
+        <div>
+          <div class="stat-value" id="statResources">18+</div>
+          <div class="stat-label" data-i18n="stat.resources">Available Resources</div>
+        </div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon terracotta">🤝</div>
+        <div>
+          <div class="stat-value" id="statRequests">24+</div>
+          <div class="stat-label" data-i18n="stat.requests">Completed Requests</div>
+        </div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-icon olive">🏘️</div>
+        <div>
+          <div class="stat-value" id="statVillages">12+</div>
+          <div class="stat-label" data-i18n="stat.villages">Villages Connected</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5.3 Featured Resources -->
+  <section class="section">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-pretitle">COMMUNITY REPOSITORY</div>
+        <h2 class="section-title" data-i18n="section.featured">Featured Agricultural Resources</h2>
+        <p class="section-subtitle" data-i18n="section.featuredSub">
+          Discover high-demand farming machinery and tools available near you today.
+        </p>
+      </div>
+
+      <div id="featuredResourcesContainer" class="resource-grid">
+        <!-- Rendered dynamically by resources.js -->
+      </div>
+
+      <div style="text-align: center; margin-top: 3rem;">
+        <a href="explore.html" class="btn-agri-primary" style="padding: 0.75rem 2rem;" data-i18n="section.viewAll">
+          View All Resources →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5.5 Sharing Models -->
+  <section class="section" style="background-color: var(--warm-cream); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-pretitle">FLEXIBLE PARTICIPATION</div>
+        <h2 class="section-title" data-i18n="models.title">Three Flexible Sharing Models</h2>
+        <p class="section-subtitle" data-i18n="models.sub">Choose the model that best fits your farming schedule and requirements.</p>
+      </div>
+
+      <div class="info-cards-grid">
+        <div class="info-card">
+          <div class="info-icon-box" style="background-color: var(--leaf-green-light); color: var(--forest-green);">🎁</div>
+          <h3 data-i18n="models.free">Free Sharing</h3>
+          <p data-i18n="models.freeDesc">
+            Farmers lend tools, sprayers, and extra water pumps without any rental fee to support neighbours in need during critical crop windows.
+          </p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon-box" style="background-color: var(--harvest-yellow-light); color: #a8791c;">🔄</div>
+          <h3 data-i18n="models.barter">Barter Exchange</h3>
+          <p data-i18n="models.barterDesc">
+            Exchange farming equipment or services directly without money (e.g. use of a rotavator in exchange for organic seeds or threshing assistance).
+          </p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon-box" style="background-color: var(--terracotta-light); color: var(--terracotta);">🏷️</div>
+          <h3 data-i18n="models.rental">Nominal Rental</h3>
+          <p data-i18n="models.rentalDesc">
+            Rent high-value tractors and combine harvesters at heavily subsidized, affordable hourly or daily rates without middleman commission.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5.4 How It Works -->
+  <section class="section" id="howItWorks">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-pretitle">SIMPLE WORKFLOW</div>
+        <h2 class="section-title" data-i18n="steps.title">How AgriShare Works</h2>
+        <p class="section-subtitle" data-i18n="steps.sub">Four straightforward steps to empower your farming operations.</p>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <div style="font-size: 2.2rem; margin-top: 0.5rem;">📝</div>
+          <h4 data-i18n="step1.title">1. Register as a Farmer</h4>
+          <p data-i18n="step1.desc">Create a free profile with your village, district, landholding, and farming type details.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <div style="font-size: 2.2rem; margin-top: 0.5rem;">🔍</div>
+          <h4 data-i18n="step2.title">2. Discover or List</h4>
+          <p data-i18n="step2.desc">Search for available nearby resources or list your own idle machinery for others.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <div style="font-size: 2.2rem; margin-top: 0.5rem;">📅</div>
+          <h4 data-i18n="step3.title">3. Request & Approve</h4>
+          <p data-i18n="step3.desc">Select booking dates and connect directly with the owner for quick confirmation.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <div style="font-size: 2.2rem; margin-top: 0.5rem;">⭐</div>
+          <h4 data-i18n="step4.title">4. Share & Give Feedback</h4>
+          <p data-i18n="step4.desc">Complete the exchange, cultivate with ease, and leave a genuine community review.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5.6 Benefits -->
+  <section class="section" style="background-color: #ffffff; border-top: 1px solid var(--border-color);">
+    <div class="section-container">
+      <div class="section-header">
+        <div class="section-pretitle">COMMUNITY IMPACT</div>
+        <h2 class="section-title" data-i18n="benefits.title">Why Choose AgriShare?</h2>
+      </div>
+
+      <div class="info-cards-grid" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="info-card" style="padding: 1.5rem 1.25rem;">
+          <div style="font-size: 2rem; color: var(--forest-green); margin-bottom: 0.75rem;">💰</div>
+          <h4 data-i18n="benefit1.title" style="font-size: 1.1rem; margin-bottom: 0.5rem;">Reduced Equipment Costs</h4>
+          <p data-i18n="benefit1.desc" style="font-size: 0.85rem;">Avoid heavy capital loans by renting or borrowing seasonal equipment when needed.</p>
+        </div>
+
+        <div class="info-card" style="padding: 1.5rem 1.25rem;">
+          <div style="font-size: 2rem; color: var(--harvest-yellow); margin-bottom: 0.75rem;">⚙️</div>
+          <h4 data-i18n="benefit2.title" style="font-size: 1.1rem; margin-bottom: 0.5rem;">Better Resource Utilization</h4>
+          <p data-i18n="benefit2.desc" style="font-size: 0.85rem;">Earn supplemental income or community goodwill from machinery sitting idle in your shed.</p>
+        </div>
+
+        <div class="info-card" style="padding: 1.5rem 1.25rem;">
+          <div style="font-size: 2rem; color: var(--terracotta); margin-bottom: 0.75rem;">🤝</div>
+          <h4 data-i18n="benefit3.title" style="font-size: 1.1rem; margin-bottom: 0.5rem;">Farmer Cooperation</h4>
+          <p data-i18n="benefit3.desc" style="font-size: 0.85rem;">Strengthen rural village solidarity and collaborative problem solving among farming peers.</p>
+        </div>
+
+        <div class="info-card" style="padding: 1.5rem 1.25rem;">
+          <div style="font-size: 2rem; color: var(--leaf-green); margin-bottom: 0.75rem;">🌱</div>
+          <h4 data-i18n="benefit4.title" style="font-size: 1.1rem; margin-bottom: 0.5rem;">Sustainable Practices</h4>
+          <p data-i18n="benefit4.desc" style="font-size: 0.85rem;">Optimize fuel, machinery wear, and carbon footprint through shared regional infrastructure.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5.7 Footer -->
+  <footer class="agri-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="color: #ffffff; margin-bottom: 1rem;">
+            <div class="brand-icon">🌾</div>
+            <div class="brand-text">Agri<span>Share</span></div>
+          </div>
+          <p style="font-size: 0.9rem; line-height: 1.7; color: #B4B9AE;" data-i18n="footer.desc">
+            AgriShare is a community-driven agricultural resource-sharing platform engineered to make modern farming equipment accessible and affordable for every farmer.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footer.quickLinks">Quick Links</h4>
+          <ul>
+            <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+            <li><a href="explore.html" data-i18n="nav.explore">Explore Resources</a></li>
+            <li><a href="about.html" data-i18n="nav.about">About Us</a></li>
+            <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+            <li><a href="login.html" data-i18n="nav.login">Login</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footer.sharingModels">Sharing Models</h4>
+          <ul>
+            <li><a href="explore.html?sharingType=Free+Sharing" data-i18n="models.free">Free Sharing</a></li>
+            <li><a href="explore.html?sharingType=Barter+Exchange" data-i18n="models.barter">Barter Exchange</a></li>
+            <li><a href="explore.html?sharingType=Nominal+Rental" data-i18n="models.rental">Nominal Rental</a></li>
+            <li><a href="dashboard.html" data-i18n="nav.dashboard">Farmer Dashboard</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4 data-i18n="footer.contactUs">Contact & Support</h4>
+          <p style="font-size: 0.88rem; color: #B4B9AE; margin-bottom: 0.5rem;">📍 Pune, Maharashtra, India</p>
+          <p style="font-size: 0.88rem; color: #B4B9AE; margin-bottom: 0.5rem;">📞 +91 98765 43210</p>
+          <p style="font-size: 0.88rem; color: #B4B9AE;">✉️ support@agrishare.org</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span data-i18n="footer.rights">© 2026 AgriShare. Developed by Multidisciplinary Engineering Project Team.</span>
+        <span>MDM Minor Project – Remote Sensing & GIS</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/resources.js"></script>
+</body>
+</html>
